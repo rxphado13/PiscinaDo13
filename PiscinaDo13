@@ -1,0 +1,103 @@
+package piscinado13;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class PiscinaDo13 extends JFrame implements ActionListener{
+
+    JLabel lbllarg, lblprof, lblcomp, lblvalor; 
+    JTextField txtlarg, txtprof, txtcomp, txtvalor;
+    JButton btncalc, btnlimp, btnsair;
+
+    public static void main(String[] args) {
+        // TODO code application logic here
+        JFrame aba = new PiscinaDo13();
+        aba.setUndecorated(true);
+        aba.getRootPane().setWindowDecorationStyle(JRootPane.FRAME);
+        aba.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        aba.setVisible(true);
+    }
+    PiscinaDo13()
+    {
+        setTitle("Exercício Piscina");
+        setBounds(250, 90, 350,90);
+        getContentPane().setBackground(new Color(176,224,230));
+        getContentPane().setLayout(new GridLayout(5,2));
+        
+        lbllarg = new JLabel("Largura");
+        lbllarg.setForeground(Color.black);
+        lbllarg.setFont(new Font("",Font.BOLD,12));
+        
+        lblprof = new JLabel("Profundidade");
+        lblprof.setForeground(Color.black);
+        lblprof.setFont(new Font("",Font.BOLD,12));
+
+        lblcomp = new JLabel("Comprimento");
+        lblcomp.setForeground(Color.black);
+        lblcomp.setFont(new Font("",Font.BOLD,12));
+
+        lblvalor = new JLabel("Valor Total");
+        lblvalor.setForeground(Color.black);
+        lblvalor.setFont(new Font("",Font.BOLD,12));
+
+        btncalc = new JButton("Calcular");
+        btncalc.addActionListener(this);
+
+        btnlimp = new JButton("Limpar");
+        btnlimp.addActionListener(this);
+
+        btnsair = new JButton("Sair");
+        btnsair.addActionListener(this);
+
+        txtlarg = new JTextField();
+        txtprof = new JTextField();
+        txtcomp = new JTextField();
+        txtvalor = new JTextField();
+        txtvalor.setEditable(false);
+
+        getContentPane().add(lbllarg);               
+        getContentPane().add(txtlarg);
+
+        getContentPane().add(lblprof);          
+        getContentPane().add(txtprof);
+
+        getContentPane().add(lblcomp);           
+        getContentPane().add(txtcomp);
+
+        getContentPane().add(lblvalor);                 
+        getContentPane().add(txtvalor);
+
+        getContentPane().add(btncalc);              
+        getContentPane().add(btnlimp);
+    }
+
+    public void actionPerformed(ActionEvent e)
+    {
+        if(e.getSource() == btnlimp)
+        {
+            txtlarg.setText("");
+            txtprof.setText("");
+            txtcomp.setText("");
+            txtvalor.setText("");
+            return;
+        }
+        double largura=0,profundidade=0,comprimento=0,area=0;
+        try
+        {
+            largura = Double.parseDouble(txtlarg.getText());
+            profundidade = Double.parseDouble(txtprof.getText());
+            comprimento = Double.parseDouble(txtcomp.getText());
+        }
+        catch(NumberFormatException error)
+        {
+            txtvalor.setText("Apenas Numerais");
+            return;
+        }
+        
+        if(e.getSource() == btncalc)
+        {
+            area = (largura*profundidade*comprimento)*30;
+            txtvalor.setText("" + area);
+        }
+    }
+}
