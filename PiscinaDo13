@@ -96,7 +96,7 @@ public class PiscinaDo13 extends JFrame implements ActionListener{
         
         if(e.getSource() == btncalc)
         {
-            area = (largura*profundidade*comprimento)*30;
+            area = (largura*profundidade*comprimento)*300;
             txtvalor.setText("" + area);
         }
     }
